@@ -111,9 +111,7 @@ public class FFprobe implements FFbinaryInterface {
     @Override
     public FFtask execute(Map<String, String> environvenmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) {
         if (cmd.length != 0) {
-            String[] ffprobeBinary = new String[]{FileUtils.getFFprobe(context.provide()).getAbsolutePath()};
-            String[] command = concatenate(ffprobeBinary, cmd);
-            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(command, environvenmentVars, timeout, ffcommandExecuteResponseHandler);
+            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(cmd, environvenmentVars, timeout, ffcommandExecuteResponseHandler);
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             return task;
         } else {
